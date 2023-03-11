@@ -7,10 +7,22 @@
     Title="osrUI"
     Width="620"
     Height="420"
-    SystemDecorations="None"
+    Background="Transparent"
+    ExtendClientAreaToDecorationsHint="True"
+    TransparencyLevelHint="ForceAcrylicBlur"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
-    <Label>osrUI</Label>
-
+    <Panel>
+        <ExperimentalAcrylicBorder IsHitTestVisible="False">
+            <ExperimentalAcrylicBorder.Material>
+                <ExperimentalAcrylicMaterial
+                    BackgroundSource="Digger"
+                    MaterialOpacity="0.8"
+                    TintColor="#101010"
+                    TintOpacity="1.95" />
+            </ExperimentalAcrylicBorder.Material>
+        </ExperimentalAcrylicBorder>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center">osrUI</Label>
+    </Panel>
 </Window>
