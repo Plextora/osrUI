@@ -13,7 +13,12 @@
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
-    <Panel>
+    <Panel
+        x:Name="MainPanel"
+        Background="White"
+        PointerMoved="MainPanel_OnPointerMoved"
+        PointerPressed="MainPanel_OnPointerPressed"
+        PointerReleased="MainPanel_OnPointerReleased">
         <ExperimentalAcrylicBorder IsHitTestVisible="False">
             <ExperimentalAcrylicBorder.Material>
                 <ExperimentalAcrylicMaterial
