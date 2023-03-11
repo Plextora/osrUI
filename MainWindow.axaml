@@ -13,6 +13,10 @@
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
+    <Window.Styles>
+        <StyleInclude Source="/Styles.axaml" />
+    </Window.Styles>
+
     <Panel
         x:Name="MainPanel"
         Background="White"
@@ -35,7 +39,6 @@
             Orientation="Horizontal"
             Spacing="5">
             <Button>Open Replay</Button>
-            <Button IsEnabled="False">Save Replay</Button>
         </StackPanel>
     </Panel>
 </Window>
