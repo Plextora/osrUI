@@ -39,6 +39,7 @@
             Orientation="Horizontal"
             Spacing="5">
             <Button>Open Replay</Button>
+            <Button>Save Replay</Button>
         </StackPanel>
     </Panel>
 </Window>
