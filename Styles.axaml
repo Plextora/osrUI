@@ -8,6 +8,7 @@
     <!--  Button styles  -->
     <Style Selector="Button">
         <Setter Property="Background" Value="#dc98a4" />
+        <Setter Property="Cursor" Value="Hand" />
     </Style>
     <Style Selector="Button:pointerover /template/ ContentPresenter">
         <Setter Property="Background" Value="#AD6874" />
@@ -25,6 +26,9 @@
     </Style>
 
     <!--  CheckBox Styles  -->
+    <Style Selector="CheckBox">
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
     <Style Selector="CheckBox /template/ Border#NormalRectangle">
         <Setter Property="BorderBrush" Value="#dc98a4" />
     </Style>
