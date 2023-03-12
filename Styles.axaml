@@ -16,4 +16,13 @@
         <Setter Property="Background" Value="#924956" />
     </Style>
 
+    <!--  TextBox styles  -->
+    <Style Selector="TextBox">
+        <Setter Property="IsUndoEnabled" Value="True" />
+        <Setter Property="BorderBrush" Value="#dc98a4" />
+        <Setter Property="MaxHeight" Value="0" />
+        <Setter Property="Margin" Value="6" />
+    </Style>
+
+
 </Styles>
