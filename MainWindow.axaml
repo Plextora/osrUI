@@ -99,7 +99,12 @@
                         Orientation="Horizontal"
                         Spacing="5">
                         <Button x:Name="OpenReplayButton" Click="OpenReplayButton_OnClick">Open Replay</Button>
-                        <Button IsEnabled="False">Save Replay</Button>
+                        <Button
+                            x:Name="SaveReplayButton"
+                            Click="SaveReplayButton_OnClick"
+                            IsEnabled="False">
+                            Save Replay
+                        </Button>
                     </StackPanel>
                 </Grid>
                 <WrapPanel
@@ -109,10 +114,12 @@
                     <TextBox
                         x:Name="ReplayUsernameTextBox"
                         Width="200"
+                        ToolTip.Tip="Replay username"
                         Watermark="Replay username" />
                     <TextBox
                         x:Name="ComboTextBox"
                         Width="200"
+                        ToolTip.Tip="Combo"
                         Watermark="Combo" />
                 </WrapPanel>
                 <WrapPanel
@@ -122,29 +129,36 @@
                     <TextBox
                         x:Name="_300sCountTextBox"
                         Width="150"
+                        ToolTip.Tip="Number of 300s"
                         Watermark="Number of 300s" />
                     <TextBox
                         x:Name="_100sCountTextBox"
                         Width="150"
+                        ToolTip.Tip="Number of 100s"
                         Watermark="Number of 100s" />
                     <TextBox
                         x:Name="_50sCountTextBox"
                         Width="150"
+                        ToolTip.Tip="Number of 50s"
                         Watermark="Number of 50s" />
                     <TextBox
                         x:Name="MissCountTextBox"
                         Width="150"
+                        ToolTip.Tip="Number of misses"
                         Watermark="Number of misses" />
                     <TextBox
                         x:Name="GekiCountTextBox"
                         Width="150"
+                        ToolTip.Tip="Number of Geki's"
                         Watermark="Number of Geki's" />
                     <TextBox
                         x:Name="KatuCountTextBox"
                         Width="150"
+                        ToolTip.Tip="Number of Katu's"
                         Watermark="Number of Katu's" />
                 </WrapPanel>
                 <CheckBox
+                    x:Name="IsPerfectComboCheckBox"
                     Grid.Row="4"
                     HorizontalAlignment="Center"
                     Content="Turn on FC property in replay?" />

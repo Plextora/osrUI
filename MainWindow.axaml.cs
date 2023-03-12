@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.NetworkInformation;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -19,6 +19,9 @@ public partial class MainWindow : Window
     private PointerPoint _originalPoint;
     private readonly Label _statusLabel;
     private static Replay? _osuReplay;
+    public static readonly Dictionary<TextBox, string?> TextBoxes = new();
+    public static Button[] Buttons = Array.Empty<Button>();
+    public static CheckBox[] CheckBoxes = Array.Empty<CheckBox>();
 
     public MainWindow()
     {
@@ -83,5 +86,40 @@ public partial class MainWindow : Window
             SetStatusLabel.Default(_statusLabel); // this might not be necessary because of async stuff
             return;
         }
+
+        OnReplayDecoded();
+    }
+
+    private async void OnReplayDecoded()
+    {
+        if (TextBoxes.Count != 0)
+            TextBoxes.Clear();
+        if (Buttons.Length != 0)
+            Array.Clear(Buttons, 0, Buttons.Length);
+        if (CheckBoxes.Length != 0)
+            Array.Clear(CheckBoxes, 0, CheckBoxes.Length);
+
+        TextBoxes.Add(ReplayUsernameTextBox, _osuReplay?.PlayerName);
+        TextBoxes.Add(ComboTextBox, (_osuReplay?.Combo).ToString());
+        TextBoxes.Add(_300sCountTextBox, _osuReplay?.Count300.ToString());
+        TextBoxes.Add(_100sCountTextBox, _osuReplay?.Count100.ToString());
+        TextBoxes.Add(_50sCountTextBox, _osuReplay?.Count50.ToString());
+        TextBoxes.Add(MissCountTextBox, _osuReplay?.CountMiss.ToString());
+        TextBoxes.Add(GekiCountTextBox, _osuReplay?.CountGeki.ToString());
+        TextBoxes.Add(KatuCountTextBox, _osuReplay?.CountKatu.ToString());
+
+        Buttons = new[] { OpenReplayButton, SaveReplayButton };
+        CheckBoxes = new[] { IsPerfectComboCheckBox };
+
+        ReplayUtil.LoadReplayInfo(_osuReplay, TextBoxes, Buttons, CheckBoxes);
+
+        SetStatusLabel.Completed(_statusLabel, "Loaded replay info!");
+        await Task.Delay(2000);
+        SetStatusLabel.Default(_statusLabel);
+    }
+
+    private void SaveReplayButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
     }
 }
