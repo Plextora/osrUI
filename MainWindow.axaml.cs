@@ -1,10 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using osrUI.Utils;
+using OsuParsers.Decoders;
+using OsuParsers.Enums;
+using OsuParsers.Replays;
 
 namespace osrUI;
 
