@@ -32,7 +32,7 @@
                     TintOpacity="1.95" />
             </ExperimentalAcrylicBorder.Material>
         </ExperimentalAcrylicBorder>
-        <Grid RowDefinitions="Auto, Auto, Auto, *">
+        <Grid RowDefinitions="Auto, Auto, Auto, Auto, *">
             <Grid x:Name="ReplayButtons" Grid.Row="0">
                 <StackPanel
                     Margin="8"
@@ -86,6 +86,10 @@
                     Width="150"
                     Watermark="Number of Katu's" />
             </WrapPanel>
+            <CheckBox
+                Grid.Row="3"
+                HorizontalAlignment="Center"
+                Content="Turn on FC property in replay?" />
         </Grid>
     </Panel>
 </Window>
