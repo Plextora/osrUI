@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.NetworkInformation;
 using Avalonia;
 using Avalonia.Controls;
@@ -17,6 +18,7 @@ public partial class MainWindow : Window
     private bool _isMouseDown;
     private PointerPoint _originalPoint;
     private readonly Label _statusLabel;
+    private static Replay? _osuReplay;
 
     public MainWindow()
     {
@@ -70,6 +72,16 @@ public partial class MainWindow : Window
             Title = "Select a replay file"
         };
 
-        openFileDialog.ShowAsync(new MainWindow());
+        var result = openFileDialog.ShowAsync(new MainWindow());
+
+        if (result.Result != null)
+        {
+            _osuReplay = ReplayDecoder.Decode(result.Result.FirstOrDefault());
+        }
+        else if (result.Result == null)
+        {
+            SetStatusLabel.Default(_statusLabel); // this might not be necessary because of async stuff
+            return;
+        }
     }
 }
