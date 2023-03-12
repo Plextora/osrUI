@@ -18,145 +18,150 @@
         <StyleInclude Source="/Styles.axaml" />
     </Window.Styles>
 
-    <Panel
-        x:Name="MainPanel"
-        Background="White"
-        PointerMoved="MainPanel_OnPointerMoved"
-        PointerPressed="MainPanel_OnPointerPressed"
-        PointerReleased="MainPanel_OnPointerReleased">
-        <ExperimentalAcrylicBorder IsHitTestVisible="False">
-            <ExperimentalAcrylicBorder.Material>
-                <ExperimentalAcrylicMaterial
-                    BackgroundSource="Digger"
-                    MaterialOpacity="0.8"
-                    TintColor="#101010"
-                    TintOpacity="1.95" />
-            </ExperimentalAcrylicBorder.Material>
-        </ExperimentalAcrylicBorder>
+    <Border
+        Padding="1"
+        ClipToBounds="True"
+        CornerRadius="30">
+        <Panel
+            x:Name="MainPanel"
+            Background="White"
+            PointerMoved="MainPanel_OnPointerMoved"
+            PointerPressed="MainPanel_OnPointerPressed"
+            PointerReleased="MainPanel_OnPointerReleased">
+            <ExperimentalAcrylicBorder IsHitTestVisible="False">
+                <ExperimentalAcrylicBorder.Material>
+                    <ExperimentalAcrylicMaterial
+                        BackgroundSource="Digger"
+                        MaterialOpacity="0.8"
+                        TintColor="#101010"
+                        TintOpacity="1.95" />
+                </ExperimentalAcrylicBorder.Material>
+            </ExperimentalAcrylicBorder>
 
-        <Grid x:Name="TitleGrid">
-            <Label
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
-                Content="osrUI"
-                FontSize="50" />
-            <StackPanel
-                Margin="4"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                Orientation="Horizontal"
-                Spacing="2">
-                <Button
-                    x:Name="MinimizeButton"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Top"
-                    Background="#64B0EC"
-                    Click="MinimizeButton_OnClick"
-                    Content="&#xE738;"
-                    FontFamily="Segoe MDL2 Assets"
-                    FontSize="20">
-                    <Button.Styles>
-                        <Style Selector="Button:pointerover /template/ ContentPresenter">
-                            <Setter Property="Background" Value="#4A8ABC" />
-                        </Style>
-                        <Style Selector="Button:pressed /template/ ContentPresenter">
-                            <Setter Property="Background" Value="#2E648F" />
-                        </Style>
-                    </Button.Styles>
-                </Button>
-                <Button
-                    x:Name="CloseButton"
-                    Background="#E97474"
-                    Click="CloseButton_OnClick"
-                    Content="&#xE711;"
-                    FontFamily="Segoe MDL2 Assets"
-                    FontSize="20">
-                    <Button.Styles>
-                        <Style Selector="Button:pointerover /template/ ContentPresenter">
-                            <Setter Property="Background" Value="#CD5C5C" />
-                        </Style>
-                        <Style Selector="Button:pressed /template/ ContentPresenter">
-                            <Setter Property="Background" Value="#A03838" />
-                        </Style>
-                    </Button.Styles>
-                </Button>
-            </StackPanel>
-        </Grid>
-
-        <Grid
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
-            <Grid x:Name="ReplayButtons" Grid.Row="1">
-                <StackPanel
-                    Margin="8"
+            <Grid x:Name="TitleGrid">
+                <Label
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
+                    Content="osrUI"
+                    FontSize="50" />
+                <StackPanel
+                    Margin="10"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
                     Orientation="Horizontal"
-                    Spacing="5">
-                    <Button>Open Replay</Button>
-                    <Button>Save Replay</Button>
+                    Spacing="2">
+                    <Button
+                        x:Name="MinimizeButton"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Background="#64B0EC"
+                        Click="MinimizeButton_OnClick"
+                        Content="&#xE738;"
+                        FontFamily="Segoe MDL2 Assets"
+                        FontSize="20">
+                        <Button.Styles>
+                            <Style Selector="Button:pointerover /template/ ContentPresenter">
+                                <Setter Property="Background" Value="#4A8ABC" />
+                            </Style>
+                            <Style Selector="Button:pressed /template/ ContentPresenter">
+                                <Setter Property="Background" Value="#2E648F" />
+                            </Style>
+                        </Button.Styles>
+                    </Button>
+                    <Button
+                        x:Name="CloseButton"
+                        Background="#E97474"
+                        Click="CloseButton_OnClick"
+                        Content="&#xE711;"
+                        FontFamily="Segoe MDL2 Assets"
+                        FontSize="20">
+                        <Button.Styles>
+                            <Style Selector="Button:pointerover /template/ ContentPresenter">
+                                <Setter Property="Background" Value="#CD5C5C" />
+                            </Style>
+                            <Style Selector="Button:pressed /template/ ContentPresenter">
+                                <Setter Property="Background" Value="#A03838" />
+                            </Style>
+                        </Button.Styles>
+                    </Button>
                 </StackPanel>
             </Grid>
-            <WrapPanel
-                Grid.Row="2"
+
+            <Grid
                 HorizontalAlignment="Center"
-                Orientation="Horizontal">
-                <TextBox
-                    x:Name="ReplayUsernameTextBox"
-                    Width="200"
-                    Watermark="Replay username" />
-                <TextBox
-                    x:Name="ComboTextBox"
-                    Width="200"
-                    Watermark="Combo" />
-            </WrapPanel>
-            <WrapPanel
-                Grid.Row="3"
-                HorizontalAlignment="Center"
-                Orientation="Horizontal">
-                <TextBox
-                    x:Name="_300sCountTextBox"
-                    Width="150"
-                    Watermark="Number of 300s" />
-                <TextBox
-                    x:Name="_100sCountTextBox"
-                    Width="150"
-                    Watermark="Number of 100s" />
-                <TextBox
-                    x:Name="_50sCountTextBox"
-                    Width="150"
-                    Watermark="Number of 50s" />
-                <TextBox
-                    x:Name="MissCountTextBox"
-                    Width="150"
-                    Watermark="Number of misses" />
-                <TextBox
-                    x:Name="GekiCountTextBox"
-                    Width="150"
-                    Watermark="Number of Geki's" />
-                <TextBox
-                    x:Name="KatuCountTextBox"
-                    Width="150"
-                    Watermark="Number of Katu's" />
-            </WrapPanel>
-            <CheckBox
-                Grid.Row="4"
-                HorizontalAlignment="Center"
-                Content="Turn on FC property in replay?" />
-        </Grid>
-        <Grid>
-            <Label
-                x:Name="StatusLabel"
-                Margin="8"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
-                Content="Status: Idle" />
-            <Label
-                Margin="8"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
-                Content="Made by Plextora" />
-        </Grid>
-    </Panel>
+                VerticalAlignment="Center"
+                RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
+                <Grid x:Name="ReplayButtons" Grid.Row="1">
+                    <StackPanel
+                        Margin="8"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Orientation="Horizontal"
+                        Spacing="5">
+                        <Button>Open Replay</Button>
+                        <Button>Save Replay</Button>
+                    </StackPanel>
+                </Grid>
+                <WrapPanel
+                    Grid.Row="2"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                    <TextBox
+                        x:Name="ReplayUsernameTextBox"
+                        Width="200"
+                        Watermark="Replay username" />
+                    <TextBox
+                        x:Name="ComboTextBox"
+                        Width="200"
+                        Watermark="Combo" />
+                </WrapPanel>
+                <WrapPanel
+                    Grid.Row="3"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                    <TextBox
+                        x:Name="_300sCountTextBox"
+                        Width="150"
+                        Watermark="Number of 300s" />
+                    <TextBox
+                        x:Name="_100sCountTextBox"
+                        Width="150"
+                        Watermark="Number of 100s" />
+                    <TextBox
+                        x:Name="_50sCountTextBox"
+                        Width="150"
+                        Watermark="Number of 50s" />
+                    <TextBox
+                        x:Name="MissCountTextBox"
+                        Width="150"
+                        Watermark="Number of misses" />
+                    <TextBox
+                        x:Name="GekiCountTextBox"
+                        Width="150"
+                        Watermark="Number of Geki's" />
+                    <TextBox
+                        x:Name="KatuCountTextBox"
+                        Width="150"
+                        Watermark="Number of Katu's" />
+                </WrapPanel>
+                <CheckBox
+                    Grid.Row="4"
+                    HorizontalAlignment="Center"
+                    Content="Turn on FC property in replay?" />
+            </Grid>
+            <Grid>
+                <Label
+                    x:Name="StatusLabel"
+                    Margin="15"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Content="Status: Idle" />
+                <Label
+                    Margin="15"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Content="Made by Plextora" />
+            </Grid>
+        </Panel>
+    </Border>
 </Window>
