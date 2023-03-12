@@ -99,7 +99,7 @@
                         Orientation="Horizontal"
                         Spacing="5">
                         <Button>Open Replay</Button>
-                        <Button>Save Replay</Button>
+                        <Button IsEnabled="False">Save Replay</Button>
                     </StackPanel>
                 </Grid>
                 <WrapPanel
