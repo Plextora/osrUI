@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="osrUI"
-    Width="620"
+    Width="640"
     Height="420"
     MinWidth="400"
     Background="Transparent"
@@ -127,8 +127,15 @@
                         ToolTip.Tip="Combo"
                         Watermark="Combo" />
                 </WrapPanel>
+                <Grid Grid.Row="3">
+                    <TextBox
+                        x:Name="ScoreTextBox"
+                        Width="200"
+                        ToolTip.Tip="Score"
+                        Watermark="Score" />
+                </Grid>
                 <WrapPanel
-                    Grid.Row="3"
+                    Grid.Row="4"
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
                     <TextBox
@@ -164,7 +171,7 @@
                 </WrapPanel>
                 <CheckBox
                     x:Name="IsPerfectComboCheckBox"
-                    Grid.Row="4"
+                    Grid.Row="5"
                     HorizontalAlignment="Center"
                     Content="Turn on FC property in replay?" />
             </Grid>
