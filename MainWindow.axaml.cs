@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Avalonia;
@@ -100,6 +101,8 @@ public partial class MainWindow : Window
             Array.Clear(CheckBoxes, 0, CheckBoxes.Length);
 
         TextBoxes.Add(ReplayUsernameTextBox, _osuReplay?.PlayerName);
+        TextBoxes.Add(ReplayTimestampTextBox,
+            _osuReplay?.ReplayTimestamp.ToLocalTime().ToString(CultureInfo.CurrentCulture));
         TextBoxes.Add(ComboTextBox, (_osuReplay?.Combo).ToString());
         TextBoxes.Add(_300sCountTextBox, _osuReplay?.Count300.ToString());
         TextBoxes.Add(_100sCountTextBox, _osuReplay?.Count100.ToString());

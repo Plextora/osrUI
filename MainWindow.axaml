@@ -113,12 +113,17 @@
                     Orientation="Horizontal">
                     <TextBox
                         x:Name="ReplayUsernameTextBox"
-                        Width="200"
+                        Width="150"
                         ToolTip.Tip="Replay username"
                         Watermark="Replay username" />
                     <TextBox
-                        x:Name="ComboTextBox"
+                        x:Name="ReplayTimestampTextBox"
                         Width="200"
+                        ToolTip.Tip="Replay timestamp"
+                        Watermark="Replay timestamp" />
+                    <TextBox
+                        x:Name="ComboTextBox"
+                        Width="150"
                         ToolTip.Tip="Combo"
                         Watermark="Combo" />
                 </WrapPanel>
