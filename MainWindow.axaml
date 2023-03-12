@@ -9,7 +9,7 @@
     Height="420"
     MinWidth="400"
     Background="Transparent"
-    ExtendClientAreaToDecorationsHint="True"
+    SystemDecorations="None"
     TransparencyLevelHint="ForceAcrylicBlur"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
@@ -34,12 +34,54 @@
             </ExperimentalAcrylicBorder.Material>
         </ExperimentalAcrylicBorder>
 
-        <Label
-            Grid.Row="0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Content="osrUI"
-            FontSize="50" />
+        <Grid x:Name="TitleGrid">
+            <Label
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Content="osrUI"
+                FontSize="50" />
+            <StackPanel
+                Margin="4"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Orientation="Horizontal"
+                Spacing="2">
+                <Button
+                    x:Name="MinimizeButton"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Background="#64B0EC"
+                    Click="MinimizeButton_OnClick"
+                    Content="&#xE738;"
+                    FontFamily="Segoe MDL2 Assets"
+                    FontSize="20">
+                    <Button.Styles>
+                        <Style Selector="Button:pointerover /template/ ContentPresenter">
+                            <Setter Property="Background" Value="#4A8ABC" />
+                        </Style>
+                        <Style Selector="Button:pressed /template/ ContentPresenter">
+                            <Setter Property="Background" Value="#2E648F" />
+                        </Style>
+                    </Button.Styles>
+                </Button>
+                <Button
+                    x:Name="CloseButton"
+                    Background="#E97474"
+                    Click="CloseButton_OnClick"
+                    Content="&#xE711;"
+                    FontFamily="Segoe MDL2 Assets"
+                    FontSize="20">
+                    <Button.Styles>
+                        <Style Selector="Button:pointerover /template/ ContentPresenter">
+                            <Setter Property="Background" Value="#CD5C5C" />
+                        </Style>
+                        <Style Selector="Button:pressed /template/ ContentPresenter">
+                            <Setter Property="Background" Value="#A03838" />
+                        </Style>
+                    </Button.Styles>
+                </Button>
+            </StackPanel>
+        </Grid>
 
         <Grid
             HorizontalAlignment="Center"

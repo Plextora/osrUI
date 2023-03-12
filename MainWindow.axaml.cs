@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 
 namespace osrUI;
 
@@ -39,4 +40,8 @@ public partial class MainWindow : Window
     }
 
     #endregion
+
+    private void MinimizeButton_OnClick(object? sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
+
+    private void CloseButton_OnClick(object? sender, RoutedEventArgs e) => Close();
 }
