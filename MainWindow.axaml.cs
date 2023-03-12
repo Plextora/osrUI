@@ -1,7 +1,10 @@
+using System;
+using System.Collections.Generic;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using osrUI.Utils;
 
 namespace osrUI;
 
@@ -9,10 +12,12 @@ public partial class MainWindow : Window
 {
     private bool _isMouseDown;
     private PointerPoint _originalPoint;
+    private readonly Label _statusLabel;
 
     public MainWindow()
     {
         InitializeComponent();
+        _statusLabel = this.FindControl<Label>("StatusLabel");
     }
 
     #region Make window moveable
@@ -44,4 +49,23 @@ public partial class MainWindow : Window
     private void MinimizeButton_OnClick(object? sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
 
     private void CloseButton_OnClick(object? sender, RoutedEventArgs e) => Close();
+
+    private void OpenReplayButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        SetStatusLabel.Pending(_statusLabel, "Decoding replay file...");
+
+        OpenFileDialog openFileDialog = new()
+        {
+            Filters = new List<FileDialogFilter>
+            {
+                new() { Name = "osu! Replay files", Extensions = { "osr" } },
+                new() { Name = "All files", Extensions = { "*" } }
+            },
+            Directory =
+                $@"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\osu!\Replays",
+            Title = "Select a replay file"
+        };
+
+        openFileDialog.ShowAsync(new MainWindow());
+    }
 }
