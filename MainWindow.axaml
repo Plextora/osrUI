@@ -44,7 +44,7 @@
         <Grid
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            RowDefinitions="Auto, Auto, Auto, Auto, Auto, *">
+            RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
             <Grid x:Name="ReplayButtons" Grid.Row="1">
                 <StackPanel
                     Margin="8"
@@ -102,6 +102,19 @@
                 Grid.Row="4"
                 HorizontalAlignment="Center"
                 Content="Turn on FC property in replay?" />
+        </Grid>
+        <Grid>
+            <Label
+                x:Name="StatusLabel"
+                Margin="8"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Content="Status: Idle" />
+            <Label
+                Margin="8"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Content="Made by Plextora" />
         </Grid>
     </Panel>
 </Window>
