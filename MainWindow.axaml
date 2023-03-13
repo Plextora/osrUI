@@ -6,8 +6,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="osrUI"
     Width="640"
-    Height="420"
-    MinWidth="400"
+    Height="470"
+    MinWidth="640"
+    MinHeight="500"
+    MaxWidth="640"
+    MaxHeight="470"
     Background="Transparent"
     SystemDecorations="None"
     TransparencyLevelHint="ForceAcrylicBlur"
@@ -90,7 +93,7 @@
             <Grid
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
+                RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, *">
                 <Grid x:Name="ReplayButtons" Grid.Row="1">
                     <StackPanel
                         Margin="8"
@@ -174,6 +177,43 @@
                     Grid.Row="5"
                     HorizontalAlignment="Center"
                     Content="Turn on FC property in replay?" />
+                <WrapPanel Grid.Row="6">
+                    <CheckBox
+                        x:Name="EzModCheckBox"
+                        Margin="8"
+                        HorizontalAlignment="Left"
+                        Content="EZ Mod" />
+                    <CheckBox
+                        x:Name="NfModCheckBox"
+                        Margin="8"
+                        HorizontalAlignment="Left"
+                        Content="NF Mod" />
+                    <CheckBox
+                        x:Name="HtModCheckBox"
+                        Margin="8"
+                        HorizontalAlignment="Left"
+                        Content="HT Mod" />
+                    <CheckBox
+                        x:Name="SdModCheckBox"
+                        Margin="8"
+                        HorizontalAlignment="Left"
+                        Content="SD Mod" />
+                    <CheckBox
+                        x:Name="DtModCheckBox"
+                        Margin="8"
+                        HorizontalAlignment="Left"
+                        Content="DT Mod" />
+                    <CheckBox
+                        x:Name="HdModCheckBox"
+                        Margin="8"
+                        HorizontalAlignment="Left"
+                        Content="HD Mod" />
+                    <CheckBox
+                        x:Name="FlModCheckBox"
+                        Margin="8"
+                        HorizontalAlignment="Left"
+                        Content="FL Mod" />
+                </WrapPanel>
             </Grid>
             <Grid>
                 <Label

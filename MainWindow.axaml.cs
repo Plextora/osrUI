@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using osrUI.Utils;
+using OsuParsers.Beatmaps;
 using OsuParsers.Decoders;
 using OsuParsers.Enums;
 using OsuParsers.Replays;
@@ -24,7 +24,9 @@ public partial class MainWindow : Window
     public static readonly Dictionary<TextBox, string?> TextBoxes = new();
     public static Button[] Buttons = Array.Empty<Button>();
     public static CheckBox[] CheckBoxes = Array.Empty<CheckBox>();
-    public static Dictionary<TextBox, string> JudgementTextBoxes;
+    public static Dictionary<TextBox, string>? JudgementTextBoxes;
+    private static Dictionary<CheckBox, Mods>? _modCheckBoxList;
+    private static readonly List<Mods>? _listOfModsApplied = new();
 
     public MainWindow()
     {
@@ -62,7 +64,7 @@ public partial class MainWindow : Window
 
     private void CloseButton_OnClick(object? sender, RoutedEventArgs e) => Close();
 
-    private void OpenReplayButton_OnClick(object? sender, RoutedEventArgs e)
+    private async void OpenReplayButton_OnClick(object? sender, RoutedEventArgs e)
     {
         SetStatusLabel.Pending(_statusLabel, "Decoding replay file...");
 
@@ -78,13 +80,11 @@ public partial class MainWindow : Window
             Title = "Select a replay file"
         };
 
-        var result = openFileDialog.ShowAsync(new MainWindow());
+        var result = await openFileDialog.ShowAsync(new MainWindow());
 
-        if (result.Result != null)
-        {
-            _osuReplay = ReplayDecoder.Decode(result.Result.FirstOrDefault());
-        }
-        else if (result.Result == null)
+        if (result != null)
+            _osuReplay = ReplayDecoder.Decode(result.FirstOrDefault());
+        else if (result == null)
         {
             SetStatusLabel.Default(_statusLabel);
             return;
@@ -138,6 +138,9 @@ public partial class MainWindow : Window
     {
         if (ReplayUtil.CheckFields(StatusLabel, ComboTextBox, ScoreTextBox, JudgementTextBoxes, ReplayTimestampTextBox))
         {
+            if (_listOfModsApplied != null && _listOfModsApplied.Count != 0)
+                _listOfModsApplied.Clear();
+
             SetStatusLabel.Pending(_statusLabel, "Saving replay file...");
 
             SaveFileDialog saveFileDialog = new()
@@ -162,6 +165,26 @@ public partial class MainWindow : Window
 
             if (_osuReplay != null)
             {
+                _modCheckBoxList = new Dictionary<CheckBox, Mods>
+                {
+                    { EzModCheckBox, Mods.Easy },
+                    { NfModCheckBox, Mods.NoFail },
+                    { HtModCheckBox, Mods.HalfTime },
+                    { SdModCheckBox, Mods.SuddenDeath },
+                    { DtModCheckBox, Mods.DoubleTime },
+                    { HdModCheckBox, Mods.Hidden },
+                    { FlModCheckBox, Mods.Flashlight }
+                };
+
+                foreach (var i in _modCheckBoxList)
+                    if ((bool)i.Key.IsChecked)
+                        _listOfModsApplied?.Add(i.Value);
+
+                _osuReplay.Mods = Mods.None;
+                if (_listOfModsApplied != null)
+                    foreach (var i in _listOfModsApplied)
+                        _osuReplay.Mods |= i;
+
                 _osuReplay.PlayerName = ReplayUsernameTextBox.Text;
                 _osuReplay.Combo = Convert.ToUInt16(ComboTextBox.Text);
                 _osuReplay.ReplayScore = Convert.ToInt32(ScoreTextBox.Text);
