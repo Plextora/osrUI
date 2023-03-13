@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
@@ -84,7 +85,7 @@ public partial class MainWindow : Window
         }
         else if (result.Result == null)
         {
-            SetStatusLabel.Default(_statusLabel); // this might not be necessary because of async stuff
+            SetStatusLabel.Default(_statusLabel);
             return;
         }
 
@@ -122,8 +123,49 @@ public partial class MainWindow : Window
         SetStatusLabel.Default(_statusLabel);
     }
 
-    private void SaveReplayButton_OnClick(object? sender, RoutedEventArgs e)
+    private async void SaveReplayButton_OnClick(object? sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        SetStatusLabel.Pending(_statusLabel, "Saving replay file...");
+
+        SaveFileDialog saveFileDialog = new()
+        {
+            Filters = new List<FileDialogFilter>
+            {
+                new() { Name = "osu! Replay files", Extensions = { "osr" } },
+                new() { Name = "All files", Extensions = { "*" } }
+            },
+            Directory =
+                $@"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\osu!\Replays",
+            Title = "Save as replay file"
+        };
+
+        var result = await saveFileDialog.ShowAsync(new MainWindow());
+
+        if (result == null)
+        {
+            SetStatusLabel.Default(_statusLabel);
+            return;
+        }
+
+        if (_osuReplay != null)
+        {
+            _osuReplay.PlayerName = ReplayUsernameTextBox.Text;
+            _osuReplay.Combo = Convert.ToUInt16(ComboTextBox.Text);
+            _osuReplay.ReplayScore = Convert.ToInt32(ScoreTextBox.Text);
+            if (IsPerfectComboCheckBox.IsChecked != null)
+                _osuReplay.PerfectCombo = (bool)IsPerfectComboCheckBox.IsChecked;
+            _osuReplay.Count300 = Convert.ToUInt16(_300sCountTextBox.Text);
+            _osuReplay.Count100 = Convert.ToUInt16(_100sCountTextBox.Text);
+            _osuReplay.Count50 = Convert.ToUInt16(_50sCountTextBox.Text);
+            _osuReplay.CountMiss = Convert.ToUInt16(MissCountTextBox.Text);
+            _osuReplay.CountGeki = Convert.ToUInt16(GekiCountTextBox.Text);
+            _osuReplay.CountKatu = Convert.ToUInt16(KatuCountTextBox.Text);
+            _osuReplay.ReplayTimestamp = Convert.ToDateTime(ReplayTimestampTextBox.Text);
+
+            _osuReplay.Save(result);
+            SetStatusLabel.Completed(_statusLabel, "Saved edited replay!");
+            await Task.Delay(2000);
+            SetStatusLabel.Default(_statusLabel);
+        }
     }
 }
