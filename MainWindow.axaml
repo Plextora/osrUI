@@ -181,7 +181,8 @@
                     Margin="15"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
-                    Content="Status: Idle" />
+                    Content="Status: Idle"
+                    FontSize="10" />
                 <Label
                     Margin="15"
                     HorizontalAlignment="Right"
