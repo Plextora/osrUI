@@ -1,0 +1,42 @@
+<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!--  Add Controls for Previewer Here  -->
+        </Border>
+    </Design.PreviewWith>
+
+    <!--  Button styles  -->
+    <Style Selector="Button">
+        <Setter Property="Background" Value="#dc98a4" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+    <Style Selector="Button:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#AD6874" />
+    </Style>
+    <Style Selector="Button:disabled /template/ ContentPresenter">
+        <Setter Property="Background" Value="#816066" />
+    </Style>
+    <Style Selector="Button:pressed /template/ ContentPresenter">
+        <Setter Property="Background" Value="#924956" />
+    </Style>
+
+    <!--  TextBox styles  -->
+    <Style Selector="TextBox">
+        <Setter Property="IsUndoEnabled" Value="True" />
+        <Setter Property="BorderBrush" Value="#dc98a4" />
+        <Setter Property="MaxHeight" Value="0" />
+        <Setter Property="Margin" Value="6" />
+    </Style>
+
+    <!--  CheckBox Styles  -->
+    <Style Selector="CheckBox">
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+    <Style Selector="CheckBox /template/ Border#NormalRectangle">
+        <Setter Property="BorderBrush" Value="#dc98a4" />
+    </Style>
+    <Style Selector="CheckBox:pointerover /template/ Border#NormalRectangle">
+        <Setter Property="BorderBrush" Value="#AD6874" />
+    </Style>
+
+</Styles>

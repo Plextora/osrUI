@@ -2,11 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
 using osrUI.Utils;
 using OsuParsers.Beatmaps;
 using OsuParsers.Decoders;
@@ -31,6 +35,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+
         _statusLabel = this.FindControl<Label>("StatusLabel");
     }
 

@@ -12,13 +12,15 @@
     MaxWidth="640"
     MaxHeight="470"
     Background="Transparent"
+    Icon="/Assets/logo.png"
     SystemDecorations="None"
+    TransparencyBackgroundFallback="#202020"
     TransparencyLevelHint="ForceAcrylicBlur"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
     <Window.Styles>
-        <StyleInclude Source="/Styles.axaml" />
+        <StyleInclude Source="/Styles/Styles.axaml" />
     </Window.Styles>
 
     <Border
