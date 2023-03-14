@@ -175,6 +175,7 @@ public partial class MainWindow : Window
                     { EzModCheckBox, Mods.Easy },
                     { NfModCheckBox, Mods.NoFail },
                     { HtModCheckBox, Mods.HalfTime },
+                    { HrModCheckBox, Mods.HardRock },
                     { SdModCheckBox, Mods.SuddenDeath },
                     { DtModCheckBox, Mods.DoubleTime },
                     { HdModCheckBox, Mods.Hidden },
@@ -189,6 +190,10 @@ public partial class MainWindow : Window
                 if (_listOfModsApplied != null)
                     foreach (var i in _listOfModsApplied)
                         _osuReplay.Mods |= i;
+
+                if ((bool)HrModCheckBox.IsChecked)
+                    foreach (var i in _osuReplay.ReplayFrames)
+                        i.Y = 384f - i.Y; // flip replay if hr is selected, thanks mrflash https://github.com/mrflashstudio/OsuParsers/issues/34#issuecomment-774695289
 
                 _osuReplay.PlayerName = ReplayUsernameTextBox.Text;
                 _osuReplay.Combo = Convert.ToUInt16(ComboTextBox.Text);

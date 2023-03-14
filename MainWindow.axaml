@@ -196,6 +196,11 @@
                         HorizontalAlignment="Left"
                         Content="HT Mod" />
                     <CheckBox
+                        x:Name="HrModCheckBox"
+                        Margin="8"
+                        HorizontalAlignment="Left"
+                        Content="HR Mod" />
+                    <CheckBox
                         x:Name="SdModCheckBox"
                         Margin="8"
                         HorizontalAlignment="Left"
